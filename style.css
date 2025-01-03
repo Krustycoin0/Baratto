@@ -1,0 +1,52 @@
+/* style.css */
+
+/*  Personalizza i card */
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.card-body p{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+
+/* Personalizza i bottoni */
+.btn-primary {
+  background-color: #3490dc; /* Esempio di colore blu */
+  border-color: #2779bd;
+}
+
+.btn-primary:hover {
+  background-color: #2779bd;
+  border-color: #1a6091;
+}
+
+.btn-secondary {
+  background-color: #6cb2eb; /* Esempio di colore azzurro */
+    border-color: #4688c6;
+}
+
+.btn-secondary:hover {
+  background-color: #4688c6;
+    border-color: #326b9e;
+}
+
+/* Personalizza la Modale */
+
+.modal-box {
+     overflow-y: auto;
+ }
+/*  Personalizza il footer */
+footer {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+}

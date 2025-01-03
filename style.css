@@ -1,20 +1,29 @@
 /* style.css */
 
-/*  Personalizza i card */
+/* Personalizza le cards */
 .card {
     transition: transform 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
-
+.card-body {
+    padding: 1.5rem;
+}
 .card-body p{
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   max-width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Crea colonne flessibili */
+    gap: 1rem; /* Spaziatura tra le card */
 }
 
 
@@ -44,9 +53,17 @@
 .modal-box {
      overflow-y: auto;
  }
-/*  Personalizza il footer */
+ /* Modale style */
+.modal-box {
+  position: relative;
+}
+.modal-box h3 {
+  margin-bottom: 1rem;
+}
+/* Personalizza il footer */
 footer {
     background-color: #333;
     padding: 10px;
     color: white;
+    margin-top: 20px;
 }

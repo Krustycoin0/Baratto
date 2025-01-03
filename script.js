@@ -33,60 +33,65 @@ var app = new Vue({
       }
     },
   methods: {
-      showLoginModal() {
-        this.showLoginModalFlag = true;
-      },
-      showRegisterModal() {
-         this.showRegisterModalFlag = true;
-      },
-      async login() {
+       showLoginModal() {
+      this.showLoginModalFlag = true;
+       this.$refs.loginModal.showModal();
+    },
+    showRegisterModal() {
+       this.showRegisterModalFlag = true;
+      this.$refs.registerModal.showModal();
+    },
+    async login() {
         try {
-          await firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword);
-          this.showLoginModalFlag = false;
-          this.loginEmail = "";
-          this.loginPassword = "";
+        await firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword);
+           this.showLoginModalFlag = false;
+          this.$refs.loginModal.close();
+        this.loginEmail = "";
+        this.loginPassword = "";
         } catch (error) {
-             alert("Errore durante il login: " + error.message);
-            console.error("Errore durante il login", error)
-           }
-       },
-       async register() {
-            try {
-              await firebase.auth().createUserWithEmailAndPassword(this.registerEmail, this.registerPassword);
-               const user = firebase.auth().currentUser;
-               await user.updateProfile({
-                 displayName: this.registerName
-               });
-                this.showRegisterModalFlag = false;
-                this.registerName="";
-                this.registerEmail = "";
-                this.registerPassword ="";
-             } catch (error) {
-                alert("Errore durante la registrazione: " + error.message);
-                console.error("Errore durante la registrazione", error)
-               }
-           },
+          alert("Errore durante il login: " + error.message);
+          console.error("Errore durante il login", error);
+        }
+      },
+     async register() {
+        try {
+        await firebase.auth().createUserWithEmailAndPassword(this.registerEmail, this.registerPassword);
+          const user = firebase.auth().currentUser;
+          await user.updateProfile({
+          displayName: this.registerName
+          });
+           this.showRegisterModalFlag = false;
+           this.$refs.registerModal.close();
+           this.registerName="";
+           this.registerEmail = "";
+           this.registerPassword ="";
+          } catch (error) {
+               alert("Errore durante la registrazione: " + error.message);
+               console.error("Errore durante la registrazione", error);
+            }
+      },
       logout() {
-        firebase.auth().signOut();
+      firebase.auth().signOut();
       },
       filterCategory(category) {
-        this.filteredCategory = category
+        this.filteredCategory = category;
       },
       showScambioModal(articolo){
-        this.selectedArticolo = articolo;
+          this.selectedArticolo = articolo;
         this.showScambioModalFlag = true;
-
+       this.$refs.scambioModal.showModal();
       },
-      async eseguiScambio(){
-            if(this.offeredItem){
-                 //qui puoi salvare in un database lo scambio
-              this.offeredItem = "";
-              this.showScambioModalFlag = false;
-              alert("Scambio registrato")
-          }
-            else{
-              alert("Inserisci un articolo da offrire")
-            }
+    async eseguiScambio(){
+          if(this.offeredItem){
+           //qui puoi salvare in un database lo scambio
+        this.offeredItem = "";
+        this.showScambioModalFlag = false;
+       this.$refs.scambioModal.close();
+        alert("Scambio registrato");
+       }
+        else{
+           alert("Inserisci un articolo da offrire");
+        }
      }
   },
   created(){

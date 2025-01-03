@@ -45,7 +45,8 @@ var app = new Vue({
           this.showLoginModalFlag = false;
           this.loginEmail = "";
           this.loginPassword = "";
-          } catch (error) {
+        } catch (error) {
+             alert("Errore durante il login: " + error.message);
             console.error("Errore durante il login", error)
            }
        },
@@ -61,6 +62,7 @@ var app = new Vue({
                 this.registerEmail = "";
                 this.registerPassword ="";
              } catch (error) {
+                alert("Errore durante la registrazione: " + error.message);
                 console.error("Errore durante la registrazione", error)
                }
            },

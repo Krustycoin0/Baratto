@@ -2,83 +2,83 @@
 
 /* Personalizza le cards */
 .card {
-    transition: transform 0.3s ease;
-    margin-bottom: 10px;
+   transition: transform 0.3s ease;
+   margin-bottom: 10px;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+   transform: translateY(-5px);
+   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 .card-body {
-    padding: 1.5rem;
+   padding: 1.5rem;
 }
 .card-body p{
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 100%;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   max-width: 100%;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Crea colonne flessibili */
-    gap: 1rem; /* Spaziatura tra le card */
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Crea colonne flessibili */
+   gap: 1rem; /* Spaziatura tra le card */
 }
 
 
 /* Personalizza i bottoni */
 .btn-primary {
-  background-color: #3490dc; /* Esempio di colore blu */
-  border-color: #2779bd;
+background-color: #3490dc; /* Esempio di colore blu */
+border-color: #2779bd;
 }
 
 .btn-primary:hover {
-  background-color: #2779bd;
-  border-color: #1a6091;
+background-color: #2779bd;
+border-color: #1a6091;
 }
 
 .btn-secondary {
-  background-color: #6cb2eb; /* Esempio di colore azzurro */
-    border-color: #4688c6;
+background-color: #6cb2eb; /* Esempio di colore azzurro */
+   border-color: #4688c6;
 }
 
 .btn-secondary:hover {
-  background-color: #4688c6;
-    border-color: #326b9e;
+background-color: #4688c6;
+   border-color: #326b9e;
 }
 
 /* Personalizza le Modali */
 .modal-box {
-  overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    min-width: 300px; /* Aggiunto min-width per la larghezza minima */
-    width: 90%; /* Imposta la larghezza a 90% del container */
-    max-width: 500px; /* Imposta la larghezza massima */
-    padding: 20px;
+overflow-y: auto;
+   display: flex;
+   flex-direction: column;
+   min-width: 300px; /* Aggiunto min-width per la larghezza minima */
+   width: 90%; /* Imposta la larghezza a 90% del container */
+   max-width: 500px; /* Imposta la larghezza massima */
+   padding: 20px;
 }
 /* Modale header style */
 .modal-header{
-   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+margin-bottom: 1rem;
+align-items: center;
 }
 
 .modal-title{
-  flex-grow: 1;
+flex-grow: 1;
 }
 
- /* Modale style */
+/* Modale style */
 .modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.8);
+background-color: rgba(0, 0, 0, 0.8);
 }
 
 /*  Personalizza il footer */
 footer {
-    background-color: #333;
-    padding: 10px;
-    color: white;
-    margin-top: 20px;
+   background-color: #333;
+   padding: 10px;
+   color: white;
+   margin-top: 20px;
 }

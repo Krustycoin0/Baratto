@@ -1,137 +1,84 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+/* style.css */
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.bg-gray-800 {
-    background-color: #333;
-}
-
-.text-white {
-    color: #fff;
-}
-
-.py-4 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.text-2xl {
-    font-size: 24px;
-}
-
-.font-bold {
-    font-weight: bold;
-}
-
-.mr-2 {
-    margin-right: 10px;
-}
-
-.mb-4 {
-    margin-bottom: 20px;
-}
-
-.w-1/4 {
-    width: 25%;
-}
-
-.bg-gray-100 {
-    background-color: #f7f7f7;
-}
-
-.p-4 {
-    padding: 20px;
-}
-
-.text-lg {
-    font-size: 18px;
-}
-
-.hover:text-blue-500 {
-    color: #007bff;
-}
-
+/* Personalizza le cards */
 .card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 10px;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
 .card-body {
-    padding: 20px;
+    padding: 1.5rem;
+}
+.card-body p{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
-.card-title {
-    font-size: 18px;
-    font-weight: bold;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Crea colonne flessibili */
+    gap: 1rem; /* Spaziatura tra le card */
 }
 
-.card-actions {
-    padding: 20px;
-    border-top: 1px solid #ddd;
+
+/* Personalizza i bottoni */
+.btn-primary {
+  background-color: #3490dc; /* Esempio di colore blu */
+  border-color: #2779bd;
 }
 
-.justify-end {
-    justify-content: flex-end;
+.btn-primary:hover {
+  background-color: #2779bd;
+  border-color: #1a6091;
 }
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
+.btn-secondary {
+  background-color: #6cb2eb; /* Esempio di colore azzurro */
+    border-color: #4688c6;
 }
 
+.btn-secondary:hover {
+  background-color: #4688c6;
+    border-color: #326b9e;
+}
+
+/* Personalizza le Modali */
 .modal-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
+  overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px; /* Aggiunto min-width per la larghezza minima */
+    width: 90%; /* Imposta la larghezza a 90% del container */
+    max-width: 500px; /* Imposta la larghezza massima */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Modale header style */
+.modal-header{
+   display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
 }
 
-.modal-header {
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
+.modal-title{
+  flex-grow: 1;
 }
 
-.modal-title {
-    font-size: 18px;
-    font-weight: bold;
+ /* Modale style */
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal-action {
-    padding: 20px;
-    border-top: 1px solid #ddd;
-}
-
-.textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-}
-
-.footer {
+/*  Personalizza il footer */
+footer {
     background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+    padding: 10px;
+    color: white;
+    margin-top: 20px;
 }

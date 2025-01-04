@@ -25,7 +25,7 @@
         <header class="bg-gray-800 text-white py-4">
             <nav class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="logo.png" alt="Logo" class="h-12 w-12 mr-2 rounded-full">
+                    <img src="assets/logo.png" alt="Logo" class="h-12 w-12 mr-2 rounded-full">
                     <h1 class="text-2xl font-bold">Scambio Abbigliamento</h1>
                 </div>
                 <div v-if="user">
@@ -74,13 +74,9 @@
             </section>
         </main>
           <!-- Modale Login -->
-          <dialog id="loginModal" class="modal">
-            <div class="modal-box">
-              <div class="modal-header">
-                 <h3 class="font-bold text-lg modal-title">Login</h3>
-                <button class="btn btn-sm btn-circle" @click="showLoginModalFlag = false, $refs.loginModal.close()">✕</button>
-                </div>
-                <form @submit.prevent="login">
+       <modal @close="showLoginModalFlag = false"  ref="loginModal">
+        <template v-slot:title>Login</template>
+           <form @submit.prevent="login">
                     <div class="form-control">
                       <label class="label">
                         <span class="label-text">Email</span>
@@ -93,22 +89,18 @@
                       </label>
                       <input type="password" placeholder="password" class="input input-bordered" v-model="loginPassword" required/>
                     </div>
-                  <div class="modal-action">
-                  <button type="submit" class="btn btn-primary">Login</button>
-                    <button type="button" class="btn" @click="showLoginModalFlag = false, $refs.loginModal.close()">Close</button>
-                  </div>
-                  </form>
-              </div>
-            </dialog>
+                     <template v-slot:action>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                           <button type="button" class="btn" @click="showLoginModalFlag = false, $refs.loginModal.closeModal()">Close</button>
+                     </template>
+            </form>
+        </modal>
+
 
             <!-- Modale Registrazione -->
-             <dialog id="registerModal" class="modal">
-              <div class="modal-box">
-                <div class="modal-header">
-                  <h3 class="font-bold text-lg modal-title">Registrazione</h3>
-                  <button class="btn btn-sm btn-circle" @click="showRegisterModalFlag = false, $refs.registerModal.close()">✕</button>
-                </div>
-                    <form @submit.prevent="register">
+        <modal @close="showRegisterModalFlag = false"  ref="registerModal">
+           <template v-slot:title>Registrazione</template>
+            <form @submit.prevent="register">
                         <div class="form-control">
                             <label class="label">
                               <span class="label-text">Nome</span>
@@ -127,33 +119,27 @@
                             </label>
                             <input type="password" placeholder="password" class="input input-bordered" v-model="registerPassword" required />
                           </div>
-                      <div class="modal-action">
-                          <button type="submit" class="btn btn-primary">Register</button>
-                          <button type="button" class="btn" @click="showRegisterModalFlag = false, $refs.registerModal.close()">Close</button>
-                      </div>
-                    </form>
-              </div>
-           </dialog>
+                         <template v-slot:action>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="button" class="btn" @click="showRegisterModalFlag = false, $refs.registerModal.closeModal()">Close</button>
+                        </template>
+                   </form>
+          </modal>
             <!-- Modale Scambio -->
-            <dialog id="scambioModal" class="modal">
-              <div class="modal-box">
-                <div class="modal-header">
-                    <h3 class="font-bold text-lg modal-title">Scambia</h3>
-                    <button class="btn btn-sm btn-circle" @click="showScambioModalFlag = false, $refs.scambioModal.close()">✕</button>
-                </div>
-                <p>Stai per scambiare: {{selectedArticolo.nome}}</p>
-                <div class="form-control">
-                    <label class="label">
-                      <span class="label-text">Cosa offri in cambio?</span>
-                    </label>
-                   <textarea placeholder="Inserisci qui il tuo articolo da scambiare" class="textarea textarea-bordered" v-model="offeredItem"></textarea>
+        <modal  @close="showScambioModalFlag = false" ref="scambioModal">
+           <template v-slot:title>Scambia</template>
+                  <p>Stai per scambiare: {{selectedArticolo.nome}}</p>
+                  <div class="form-control">
+                     <label class="label">
+                        <span class="label-text">Cosa offri in cambio?</span>
+                      </label>
+                     <textarea placeholder="Inserisci qui il tuo articolo da scambiare" class="textarea textarea-bordered" v-model="offeredItem"></textarea>
                  </div>
-                <div class="modal-action">
-                      <button class="btn btn-primary" @click="eseguiScambio">Conferma</button>
-                      <button type="button" class="btn" @click="showScambioModalFlag = false, $refs.scambioModal.close()">Close</button>
-                </div>
-              </div>
-           </dialog>
+                  <template v-slot:action>
+                         <button class="btn btn-primary" @click="eseguiScambio">Conferma</button>
+                         <button type="button" class="btn" @click="showScambioModalFlag = false, $refs.scambioModal.closeModal()">Close</button>
+                  </template>
+           </modal>
 
         <footer class="bg-gray-800 text-white py-4 text-center">
             <p>© 2024 Scambio Abbigliamento</p>
@@ -186,6 +172,9 @@
               selectedArticolo:null,
               showScambioModalFlag:false,
             },
+             components: {
+              'modal': () => import('./components/Modal.vue')
+                },
               computed:{
                 filteredArticoli(){
                   if(this.filteredCategory == 'all') return this.articles;
@@ -195,17 +184,17 @@
             methods: {
                 showLoginModal() {
                  this.showLoginModalFlag = true;
-                  this.$refs.loginModal.showModal();
+                  this.$refs.loginModal.openModal();
               },
                 showRegisterModal() {
                   this.showRegisterModalFlag = true;
-                  this.$refs.registerModal.showModal();
+                 this.$refs.registerModal.openModal();
                 },
                async login() {
                     try {
                       await firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword);
                       this.showLoginModalFlag = false;
-                     this.$refs.loginModal.close();
+                     this.$refs.loginModal.closeModal();
                       this.loginEmail = "";
                       this.loginPassword = "";
                     } catch (error) {
@@ -221,7 +210,7 @@
                        displayName: this.registerName
                      });
                       this.showRegisterModalFlag = false;
-                      this.$refs.registerModal.close();
+                       this.$refs.registerModal.closeModal();
                       this.registerName="";
                       this.registerEmail = "";
                       this.registerPassword ="";
@@ -240,7 +229,7 @@
              showScambioModal(articolo){
                   this.selectedArticolo = articolo;
                    this.showScambioModalFlag = true;
-                   this.$refs.scambioModal.showModal();
+                   this.$refs.scambioModal.openModal();
 
                 },
             async eseguiScambio(){
@@ -248,7 +237,7 @@
                  //qui puoi salvare in un database lo scambio
                   this.offeredItem = "";
                   this.showScambioModalFlag = false;
-                this.$refs.scambioModal.close();
+                this.$refs.scambioModal.closeModal();
                   alert("Scambio registrato")
               }
                else{
@@ -272,4 +261,4 @@
     </script>
       <script src="script.js"></script>
 </body>
-                                                             </html>
+</html>

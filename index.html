@@ -23,7 +23,7 @@
     <div id="app">
         <!-- Header -->
         <header class="bg-gray-800 text-white py-4">
-            <nav class="container mx-auto flex justify-between items-center">
+            <div class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center">
                     <img src="assets/logo.png" alt="Logo" class="h-12 w-12 mr-2 rounded-full">
                     <h1 class="text-2xl font-bold">Scambio Abbigliamento</h1>
@@ -36,7 +36,7 @@
                     <button class="btn btn-primary mr-2" @click="showLoginModal">Login</button>
                     <button class="btn btn-secondary" @click="showRegisterModal">Register</button>
                 </div>
-            </nav>
+            </div>
         </header>
 
         <!-- Main Content -->
@@ -73,9 +73,9 @@
                 </div>
             </section>
         </main>
-          <!-- Modale Login -->
-       <modal @close="showLoginModalFlag = false"  ref="loginModal">
-        <template v-slot:title>Login</template>
+         <!-- Modale Login -->
+        <modal @close="showLoginModalFlag = false"  ref="loginModal" :is-open="showLoginModalFlag">
+            <template v-slot:title>Login</template>
            <form @submit.prevent="login">
                     <div class="form-control">
                       <label class="label">
@@ -98,7 +98,7 @@
 
 
             <!-- Modale Registrazione -->
-        <modal @close="showRegisterModalFlag = false"  ref="registerModal">
+        <modal @close="showRegisterModalFlag = false"  ref="registerModal" :is-open="showRegisterModalFlag">
            <template v-slot:title>Registrazione</template>
             <form @submit.prevent="register">
                         <div class="form-control">
@@ -126,7 +126,7 @@
                    </form>
           </modal>
             <!-- Modale Scambio -->
-        <modal  @close="showScambioModalFlag = false" ref="scambioModal">
+        <modal  @close="showScambioModalFlag = false" ref="scambioModal" :is-open="showScambioModalFlag">
            <template v-slot:title>Scambia</template>
                   <p>Stai per scambiare: {{selectedArticolo.nome}}</p>
                   <div class="form-control">
@@ -183,12 +183,12 @@
             },
             methods: {
                 showLoginModal() {
-                 this.showLoginModalFlag = true;
-                  this.$refs.loginModal.openModal();
+                  this.showLoginModalFlag = true;
+                    this.$refs.loginModal.openModal();
               },
                 showRegisterModal() {
                   this.showRegisterModalFlag = true;
-                 this.$refs.registerModal.openModal();
+                   this.$refs.registerModal.openModal();
                 },
                async login() {
                     try {
